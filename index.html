@@ -3,246 +3,380 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffffff">
-<title>Snack Roky | Menu & Commande</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b91c32">
+<title>Snack Roky | Commander en ligne</title>
 <style>
-:root{color-scheme:light;--bg:#fff;--card:#fff;--text:#202020;--muted:#777;--red:#e52332;--soft:#fff0f1;--line:#eee;--shadow:0 5px 22px #0000000b}
-:root.dark{color-scheme:dark;--bg:#141414;--card:#202020;--text:#fafafa;--muted:#b5b5b5;--red:#ff4351;--soft:#351a1d;--line:#363636;--shadow:0 5px 22px #00000024}
+:root{--red:#c5223b;--dark:#201c1c;--cream:#fffaf5;--white:#fff;--muted:#777;--border:#eee4df;--green:#16834a}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:15px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;transition:background .2s,color .2s}
-button,input,select{font:inherit}
-a{color:inherit;text-decoration:none}
-.wrap{width:min(1120px,92%);margin:auto}
-header{border-bottom:1px solid var(--line);background:var(--bg)}
-nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:25px;font-weight:1000;letter-spacing:-1px}
-.logo span{color:var(--red)}
-.navright{display:flex;align-items:center;gap:12px}
-.theme{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;font-size:19px}
-.nav-order{background:var(--red);color:white;padding:12px 16px;border-radius:9px;font-size:13px;font-weight:bold}
-.hero{padding:55px 0 58px;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
-.eyebrow{color:var(--red);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-h1{font-size:clamp(39px,6vw,67px);line-height:1.03;letter-spacing:-2px;margin:15px 0}
-h1 span{color:var(--red)}
-.hero p{color:var(--muted);line-height:1.8;max-width:490px}
-.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:9px;padding:13px 17px;font-weight:bold;cursor:pointer}
-.primary{background:var(--red);color:white}
-.outline{border:1px solid var(--line);background:var(--card);color:var(--text)}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}
-.hero-art{min-height:300px;border-radius:24px;background:var(--soft);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.food-art{font-size:clamp(90px,15vw,160px);filter:drop-shadow(0 14px 10px #0002);transform:rotate(-7deg)}
-.art-label{position:absolute;bottom:17px;right:17px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:bold}
-.section{padding:30px 0}
-.heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}
-h2{font-size:27px;margin:0}
-.heading p{color:var(--muted);font-size:13px;margin:7px 0 0}
-.red{color:var(--red)}
-.search{width:100%;padding:14px 16px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:11px;outline:none}
-.search:focus{border-color:var(--red)}
-.categories{display:flex;gap:8px;overflow-x:auto;padding:14px 0 18px}
-.cat{white-space:nowrap;padding:10px 14px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:30px;cursor:pointer;font-size:12px}
-.cat.active{background:var(--red);color:#fff;border-color:var(--red)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.item{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-.itemtop{display:flex;justify-content:space-between;align-items:start;gap:8px}
-.itemname{font-weight:800;font-size:15px;line-height:1.5}
-.price{color:var(--red);font-weight:800;font-size:14px;white-space:nowrap}
-.catlabel{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin:9px 0 12px}
-.size{width:100%;padding:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:8px;margin:0 0 12px}
-.itembottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
-.small{font-size:11px;color:var(--muted)}
-.add{border:0;border-radius:8px;padding:10px 12px;background:var(--soft);color:var(--red);font-weight:bold;cursor:pointer}
-.add:hover{background:var(--red);color:#fff}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:35px}
-.cart{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:20px}
-.carthead{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.count{font-size:12px;color:var(--red);font-weight:bold}
-.cartlist{display:grid;gap:9px;margin:18px 0}
-.cartrow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.cartrow strong{font-size:13px}
-.cartrow small{display:block;color:var(--muted);margin-top:5px}
+body{margin:0;background:var(--cream);color:var(--dark);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#9e152b,#e43b43);color:white;padding:28px 18px 32px;text-align:center;border-radius:0 0 26px 26px}
+.logo{font-size:13px;letter-spacing:4px;font-weight:bold}
+header h1{font-size:38px;margin:12px 0 8px}
+header p{margin:0;font-size:14px;opacity:.94}
+.pill{display:inline-block;margin-top:17px;padding:9px 15px;border:1px solid #ffffff66;border-radius:30px;font-size:12px}
+main{max-width:900px;margin:auto;padding:20px 14px 45px}
+h2{font-size:23px;margin:12px 0}
+.intro{color:var(--muted);font-size:14px;line-height:1.6}
+.search{width:100%;padding:14px;border:1px solid var(--border);border-radius:12px;font-size:15px;margin:14px 0;background:white}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:3px 0 12px}
+.cat{white-space:nowrap;border:1px solid var(--border);border-radius:25px;padding:10px 14px;background:white;color:var(--dark);cursor:pointer}
+.cat.active{background:var(--red);border-color:var(--red);color:white}
+.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:white;border:1px solid var(--border);border-radius:15px;padding:15px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.emoji{font-size:26px}
+.card h3{font-size:15px;line-height:1.4;margin:0}
+.card .price{font-size:14px;font-weight:bold;color:var(--red)}
+.card select{width:100%;padding:9px;border:1px solid var(--border);border-radius:8px;background:white}
+.add{border:0;background:var(--dark);color:white;padding:11px 8px;border-radius:9px;font-weight:bold;cursor:pointer;margin-top:auto}
+.add:active{transform:scale(.98)}
+.section{margin-top:30px}
+.panel{background:white;border:1px solid var(--border);border-radius:17px;padding:17px;margin-top:14px}
+.cart-empty{color:var(--muted);font-size:14px;padding:10px 0}
+.cart-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--border)}
+.cart-name{font-size:13px;font-weight:bold;flex:1}
+.cart-price{font-size:13px;color:var(--red);font-weight:bold}
 .qty{display:flex;align-items:center;gap:9px}
-.qty button{width:29px;height:29px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:7px;cursor:pointer}
-.total{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;font-weight:900;font-size:20px}
-.cartactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
-.hint{font-size:12px;color:var(--muted);line-height:1.7}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.info{border:1px solid var(--line);border-radius:14px;padding:19px;background:var(--card)}
-.info p{color:var(--muted);font-size:13px;line-height:1.7}
-footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
-.toast{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:10px;z-index:5;font-weight:bold}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding:36px 0}.hero-art{min-height:220px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}.logo{font-size:21px}.nav-order{padding:11px;font-size:12px}.hero-art{min-height:190px}.heading{align-items:start;flex-direction:column}.item{padding:15px}}
+.qty button{border:1px solid var(--border);background:white;border-radius:7px;width:28px;height:28px;font-size:17px;cursor:pointer}
+.total{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:bold;margin-top:17px}
+label{display:block;font-size:13px;font-weight:bold;margin:15px 0 7px}
+input,textarea{display:block;width:100%;padding:13px;border:1px solid #e5ddd8;border-radius:10px;background:#fff;font:inherit;font-size:14px;color:var(--dark)}
+textarea{min-height:85px;resize:vertical}
+.hint{font-size:12px;color:var(--muted);line-height:1.5;margin-top:7px}
+.submit{width:100%;border:0;background:var(--green);color:white;padding:15px;border-radius:11px;font-size:15px;font-weight:bold;margin-top:20px;cursor:pointer}
+.submit:hover{filter:brightness(.95)}
+.mapbtn{display:block;text-align:center;text-decoration:none;color:var(--red);border:1px solid var(--red);padding:13px;border-radius:11px;margin-top:12px;font-weight:bold}
+footer{text-align:center;padding:25px 12px;color:var(--muted);font-size:12px}
+.hidden{display:none!important}
+@media(min-width:650px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}header h1{font-size:46px}main{padding-top:28px}}
+@media(max-width:360px){.menu-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <header>
-<nav class="wrap">
-<a href="#" class="logo">SNACK <span>ROKY.</span></a>
-<div class="navright">
-<button class="theme" id="theme" aria-label="Changer le thème">🌙</button>
-<a class="nav-order" href="#commande">🛒 Ma commande</a>
-</div>
-</nav>
+  <div class="logo">FRESH • FAST • DELICIOUS</div>
+  <h1>🍔 SNACK ROKY</h1>
+  <p>Le goût qui vous fait revenir !</p>
+  <div class="pill">🥡 Commandez facilement sur WhatsApp</div>
 </header>
 
 <main>
-<div class="wrap">
-<section class="hero">
-<div>
-<div class="eyebrow">Bienvenue chez Snack Roky</div>
-<h1>LE GOÛT QUI<br>FAIT <span>PLAISIR.</span></h1>
-<p>Envie d'un burger, d'un tacos ou d'une pizza ? Découvre notre menu, choisis tes plats préférés et prépare ta commande facilement sur WhatsApp.</p>
-<div class="hero-actions">
-<a class="btn primary" href="#menu">Découvrir le menu ↓</a>
-<a class="btn outline" href="https://maps.app.goo.gl/HqU9Lja9sknxqJUj8" target="_blank" rel="noopener">📍 Notre adresse</a>
-</div>
-</div>
-<div class="hero-art" aria-label="Illustration de restauration rapide">
-<div class="food-art">🍔🍟</div>
-<div class="art-label">❤️ Fait pour se régaler</div>
-</div>
-</section>
+  <section>
+    <h2>Notre Menu 🍟</h2>
+    <p class="intro">Choisissez vos plats préférés, ajoutez-les au panier et confirmez votre commande sur WhatsApp.</p>
+    <input class="search" id="search" type="search" placeholder="🔎 Rechercher un plat..." aria-label="Rechercher un plat">
+    <div class="categories" id="categories"></div>
+    <div class="menu-grid" id="menu"></div>
+    <p class="intro" id="noResults" hidden>Aucun plat trouvé.</p>
+  </section>
 
-<section class="section" id="menu">
-<div class="heading">
-<div><h2>Notre <span class="red">menu</span></h2><p>Des envies pour tous les goûts · Prix en DH</p></div>
-</div>
-<input class="search" id="search" type="search" placeholder="🔎 Rechercher un plat..." aria-label="Rechercher un plat">
-<div class="categories" id="categories"></div>
-<div class="grid" id="grid"></div>
-</section>
+  <section class="section">
+    <h2>🛒 Votre commande</h2>
+    <div class="panel">
+      <div id="cart"><p class="cart-empty">Votre panier est vide. Ajoutez vos plats préférés !</p></div>
+      <div class="total"><span>Total</span><span id="total">0 DH</span></div>
+    </div>
+  </section>
 
-<section class="section" id="commande">
-<div class="cart">
-<div class="carthead"><h2>🛒 Ma commande</h2><span class="count" id="count">0 article</span></div>
-<div class="cartlist" id="cartlist"><p class="hint">Ajoute tes plats préférés depuis le menu.</p></div>
-<div class="total"><span>Total estimé</span><span id="total">0 DH</span></div>
-<div class="cartactions">
-<button class="btn primary" id="send">Commander sur WhatsApp ↗</button>
-<button class="btn outline" id="clear">Vider le panier</button>
-</div>
-<p class="hint">Le total n'inclut pas d'éventuels frais de livraison. La commande sera envoyée sur WhatsApp pour confirmation par le restaurant.</p>
-</div>
-</section>
+  <section class="section" id="orderForm">
+    <h2>📋 Informations de livraison</h2>
+    <p class="intro">Remplissez vos informations pour envoyer votre commande au restaurant.</p>
+    <div class="panel">
+      <form id="customerForm">
+        <label for="fullname">Nom complet *</label>
+        <input id="fullname" name="fullname" type="text" placeholder="Votre nom complet" autocomplete="name" required>
 
-<section class="section">
-<div class="heading"><div><h2>Nous <span class="red">trouver</span></h2><p>Une question ou envie de commander ? Contacte-nous.</p></div></div>
-<div class="info-grid">
-<div class="info"><strong>📍 Notre emplacement</strong><p>Retrouve Snack Roky sur Google Maps.</p><a class="btn outline" href="https://maps.app.goo.gl/HqU9Lja9sknxqJUj8" target="_blank" rel="noopener">Ouvrir Google Maps ↗</a></div>
-<div class="info"><strong>📱 WhatsApp</strong><p>Prépare ta commande et envoie-la directement au restaurant.</p><a class="btn outline" href="https://wa.me/212611851937" target="_blank" rel="noopener">Contacter Snack Roky ↗</a></div>
-</div>
-</section>
-</div>
+        <label for="phone">Numéro de téléphone *</label>
+        <input id="phone" name="phone" type="tel" placeholder="06XXXXXXXX" autocomplete="tel" required>
+
+        <label for="address">Adresse de livraison *</label>
+        <input id="address" name="address" type="text" placeholder="Quartier, rue, immeuble..." autocomplete="street-address" required>
+
+        <label for="time">Heure souhaitée *</label>
+        <input id="time" name="time" type="time" required>
+
+        <label for="notes">Remarque (facultatif)</label>
+        <textarea id="notes" name="notes" placeholder="Instructions supplémentaires..."></textarea>
+
+        <p class="hint">* Champs obligatoires. Votre commande sera préparée dans un message WhatsApp que vous pourrez vérifier avant de l'envoyer.</p>
+        <button class="submit" type="submit">📲 Confirmer ma commande sur WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>📍 Nous trouver</h2>
+    <p class="intro">Retrouvez Snack Roky sur Google Maps.</p>
+    <a class="mapbtn" href="https://maps.app.goo.gl/HqU9Lja9sknxqJUj8" target="_blank" rel="noopener">Ouvrir Google Maps ↗</a>
+  </section>
 </main>
-<footer><div class="wrap">© <span id="year"></span> Snack Roky · Tous droits réservés.</div></footer>
-<div class="toast" id="toast"></div>
+
+<footer>© <span id="year"></span> Snack Roky · Tous droits réservés</footer>
 
 <script>
-const PHONE="212611851937";
-const menu=[
-["Salades","Salade Rocky",30],["Salades","Salade Niçoise",20],["Salades","Salade Thon",25],
-["Sandwiches Avec Frites","Sandwich Chawarma",25],["Sandwiches Avec Frites","Sandwich Merguez",20],["Sandwiches Avec Frites","Sandwich Viande Hachée",20],["Sandwiches Avec Frites","Sandwich Mixte",25],["Sandwiches Avec Frites","Sandwich Poulet",20],["Sandwiches Avec Frites","Sandwich Dinde",20],
-["Burgers Avec Frites","Double Chicken",30],["Burgers Avec Frites","Chicken Burger",25],["Burgers Avec Frites","Double Cheese",30],["Burgers Avec Frites","Egg Cheese",25],["Burgers Avec Frites","Cheese Burger",22],["Burgers Avec Frites","Hamburger",20],
-["Paninis Avec Frites","Panini Chawarma",25],["Paninis Avec Frites","Panini Cordon Bleu",25],["Paninis Avec Frites","Panini Viande Hachée",25],["Paninis Avec Frites","Panini Fromage",25],["Paninis Avec Frites","Panini Escalope",25],["Paninis Avec Frites","Panini Mixte",25],["Paninis Avec Frites","Panini Chika",25],["Paninis Avec Frites","Panini Merguez",25],["Paninis Avec Frites","Panini Dinde",25],["Paninis Avec Frites","Panini Thon",25],
-["Chikas Avec Frites","Chika Mixte",25],["Chikas Avec Frites","Chika Rouge",25],["Chikas Avec Frites","Chika Curry",25],
-["Tacos Avec Frites","Tacos Escalope",30],["Tacos Avec Frites","Tacos Saucisse",30],["Tacos Avec Frites","Tacos Chawarma",30],["Tacos Avec Frites","Tacos Poulet",30],["Tacos Avec Frites","Tacos Thon",30],["Tacos Avec Frites","Tacos Viande Hachée",30],["Tacos Avec Frites","Tacos Dinde",30],["Tacos Avec Frites","Tacos Mixte",35],["Tacos Avec Frites","Tacos Rouge",35],["Tacos Avec Frites","Tacos Curry",35],["Tacos Avec Frites","Tacos Fruits de mer",40],
-["Mégas Avec Frites","Méga Mixte",30],["Mégas Avec Frites","Méga Viande Hachée",30],["Mégas Avec Frites","Méga Escalope",30],
-["Plats Maison","Plat Mixte",40],["Plats Maison","Plat Emincé",35],["Plats Maison","Plat Escalope",35],["Plats Maison","Plat Kintaki",40],["Plats Maison","Plat Nuggets",35],["Plats Maison","Plat Chawarma",35],["Plats Maison","Plat Saucisse",35],["Plats Maison","Plat Viande Hachée",35],["Plats Maison","Plat Dinde",35],
-["Pizzas","Pizza Margharita",null,20,30],["Pizzas","Pizza Végétarienne",null,20,40],["Pizzas","Pizza Marocaine",null,30,60],["Pizzas","Pizza Thon",null,30,60],["Pizzas","Pizza Bolognaise",null,30,60],["Pizzas","Pizza Dinde",null,30,60],["Pizzas","Pizza Oriental",null,30,60],["Pizzas","Pizza Chawarma",null,30,60],["Pizzas","Pizza 4 Saisons",null,35,65],["Pizzas","Pizza Fruits de mer",null,45,70],
-["Soflets Avec Frite","Soflet Mixte",40],["Soflets Avec Frite","Soflet Viande Haché",35],["Soflets Avec Frite","Soflet Escalope",35],["Soflets Avec Frite","Soflet Shawarma",35],["Soflets Avec Frite","Soflet Merguez",35],["Soflets Avec Frite","Soflet Thon",35],["Soflets Avec Frite","Soflet Dinde",35],
-["Pasticcios","Pasticcio Viande Hachée",30],["Pasticcios","Pasticcio Poulet",30],["Pasticcios","Pasticcio Escalope",30],["Pasticcios","Pasticcio Dinde",30],["Pasticcios","Pasticcio Chawarma",30],["Pasticcios","Pasticcio Saucisse",35],["Pasticcios","Pasticcio Mixte",35],
-["Gratins","Gratin Viande Haché",30],["Gratins","Gratin Poulet",30],["Gratins","Gratin Dinde",30],["Gratins","Gratin Escalope",30],["Gratins","Gratin Saucisse",30],["Gratins","Gratin Chawarma",30],
-["Poulet Rôti","Poulet Entier",140],["Poulet Rôti","1/2 Poulet Rôti",70],["Poulet Rôti","1/4 Poulet Rôti",35]
+const WHATSAPP = "212611851937";
+const menuData = [
+["Salades","Salade Rocky",30,"🥗"],
+["Salades","Salade Niçoise",20,"🥗"],
+["Salades","Salade Thon",25,"🥗"],
+
+["Sandwiches Avec Frites","Sandwich Chawarma",25,"🥙"],
+["Sandwiches Avec Frites","Sandwich Merguez",20,"🥙"],
+["Sandwiches Avec Frites","Sandwich Viande Hachée",20,"🥙"],
+["Sandwiches Avec Frites","Sandwich Mixte",25,"🥙"],
+["Sandwiches Avec Frites","Sandwich Poulet",20,"🥙"],
+["Sandwiches Avec Frites","Sandwich Dinde",20,"🥙"],
+
+["Burgers Avec Frites","Double Chicken",30,"🍔"],
+["Burgers Avec Frites","Chicken Burger",25,"🍔"],
+["Burgers Avec Frites","Double Cheese",30,"🍔"],
+["Burgers Avec Frites","Egg Cheese",25,"🍔"],
+["Burgers Avec Frites","Cheese Burger",22,"🍔"],
+["Burgers Avec Frites","Hamburger",20,"🍔"],
+
+["Paninis Avec Frites","Panini Chawarma",25,"🥪"],
+["Paninis Avec Frites","Panini Cordon Bleu",25,"🥪"],
+["Paninis Avec Frites","Panini Viande Hachée",25,"🥪"],
+["Paninis Avec Frites","Panini Fromage",25,"🥪"],
+["Paninis Avec Frites","Panini Escalope",25,"🥪"],
+["Paninis Avec Frites","Panini Mixte",25,"🥪"],
+["Paninis Avec Frites","Panini Chika",25,"🥪"],
+["Paninis Avec Frites","Panini Merguez",25,"🥪"],
+["Paninis Avec Frites","Panini Dinde",25,"🥪"],
+["Paninis Avec Frites","Panini Thon",25,"🥪"],
+
+["Chikas Avec Frites","Chika Mixte",25,"🌯"],
+["Chikas Avec Frites","Chika Rouge",25,"🌯"],
+["Chikas Avec Frites","Chika Curry",25,"🌯"],
+
+["Tacos Avec Frites","Tacos Escalope",30,"🌮"],
+["Tacos Avec Frites","Tacos Saucisse",30,"🌮"],
+["Tacos Avec Frites","Tacos Chawarma",30,"🌮"],
+["Tacos Avec Frites","Tacos Poulet",30,"🌮"],
+["Tacos Avec Frites","Tacos Thon",30,"🌮"],
+["Tacos Avec Frites","Tacos Viande Hachée",30,"🌮"],
+["Tacos Avec Frites","Tacos Dinde",30,"🌮"],
+["Tacos Avec Frites","Tacos Mixte",35,"🌮"],
+["Tacos Avec Frites","Tacos Rouge",35,"🌮"],
+["Tacos Avec Frites","Tacos Curry",35,"🌮"],
+["Tacos Avec Frites","Tacos Fruits de mer",40,"🌮"],
+
+["Mégas Avec Frites","Méga Mixte",30,"🌯"],
+["Mégas Avec Frites","Méga Viande Hachée",30,"🌯"],
+["Mégas Avec Frites","Méga Escalope",30,"🌯"],
+
+["Plats Maison","Plat Mixte",40,"🍽️"],
+["Plats Maison","Plat Emincé",35,"🍽️"],
+["Plats Maison","Plat Escalope",35,"🍽️"],
+["Plats Maison","Plat Kintaki",40,"🍽️"],
+["Plats Maison","Plat Nuggets",35,"🍽️"],
+["Plats Maison","Plat Chawarma",35,"🍽️"],
+["Plats Maison","Plat Saucisse",35,"🍽️"],
+["Plats Maison","Plat Viande Hachée",35,"🍽️"],
+["Plats Maison","Plat Dinde",35,"🍽️"],
+
+["Pizzas","Pizza Margharita",null,"🍕",20,30],
+["Pizzas","Pizza Végétarienne",null,"🍕",20,40],
+["Pizzas","Pizza Marocaine",null,"🍕",30,60],
+["Pizzas","Pizza Thon",null,"🍕",30,60],
+["Pizzas","Pizza Bolognaise",null,"🍕",30,60],
+["Pizzas","Pizza Dinde",null,"🍕",30,60],
+["Pizzas","Pizza Oriental",null,"🍕",30,60],
+["Pizzas","Pizza Chawarma",null,"🍕",30,60],
+["Pizzas","Pizza 4 Saisons",null,"🍕",35,65],
+["Pizzas","Pizza Fruits de mer",null,"🍕",45,70],
+
+["Soflets Avec Frite","Soflet Mixte",40,"🥘"],
+["Soflets Avec Frite","Soflet Viande Hachée",35,"🥘"],
+["Soflets Avec Frite","Soflet Escalope",35,"🥘"],
+["Soflets Avec Frite","Soflet Shawarma",35,"🥘"],
+["Soflets Avec Frite","Soflet Merguez",35,"🥘"],
+["Soflets Avec Frite","Soflet Thon",35,"🥘"],
+["Soflets Avec Frite","Soflet Dinde",35,"🥘"],
+
+["Pasticcios","Pasticcio Viande Hachée",30,"🧀"],
+["Pasticcios","Pasticcio Poulet",30,"🧀"],
+["Pasticcios","Pasticcio Escalope",30,"🧀"],
+["Pasticcios","Pasticcio Dinde",30,"🧀"],
+["Pasticcios","Pasticcio Chawarma",30,"🧀"],
+["Pasticcios","Pasticcio Saucisse",35,"🧀"],
+["Pasticcios","Pasticcio Mixte",35,"🧀"],
+
+["Gratins","Gratin Viande Hachée",30,"🧀"],
+["Gratins","Gratin Poulet",30,"🧀"],
+["Gratins","Gratin Dinde",30,"🧀"],
+["Gratins","Gratin Escalope",30,"🧀"],
+["Gratins","Gratin Saucisse",30,"🧀"],
+["Gratins","Gratin Chawarma",30,"🧀"],
+
+["Poulet Rôti","Poulet Entier",140,"🍗"],
+["Poulet Rôti","1/2 Poulet Rôti",70,"🍗"],
+["Poulet Rôti","1/4 Poulet Rôti",35,"🍗"]
 ];
 
-const $=id=>document.getElementById(id);
-let active="Tout",cart=[];
-const cats=["Tout",...new Set(menu.map(x=>x[0]))];
-$("year").textContent=new Date().getFullYear();
+const categories = ["Tout",...new Set(menuData.map(x=>x[0]))];
+let selectedCategory = "Tout";
+let cart = [];
 
-function toast(s){
- $("toast").textContent=s;
- $("toast").style.display="block";
- setTimeout(()=>$("toast").style.display="none",1900);
+const menuEl = document.getElementById("menu");
+const categoriesEl = document.getElementById("categories");
+const searchEl = document.getElementById("search");
+
+function money(n){return n+" DH";}
+
+function renderCategories(){
+  categoriesEl.innerHTML = "";
+  categories.forEach(cat=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="cat"+(cat===selectedCategory?" active":"");
+    b.textContent=cat;
+    b.onclick=()=>{selectedCategory=cat;renderCategories();renderMenu();};
+    categoriesEl.appendChild(b);
+  });
 }
 
-/* Le thème suit le téléphone/ordinateur, avec un bouton manuel. */
-const saved=localStorage.getItem("roky-theme");
-const prefersDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
-let dark=saved?saved==="dark":prefersDark;
-function setTheme(){
- document.documentElement.classList.toggle("dark",dark);
- $("theme").textContent=dark?"☀️":"🌙";
- $("theme").title=dark?"Passer au thème clair":"Passer au thème sombre";
-}
-$("theme").onclick=()=>{
- dark=!dark;
- localStorage.setItem("roky-theme",dark?"dark":"light");
- setTheme();
-};
-setTheme();
-
-function renderCats(){
- $("categories").innerHTML=cats.map(c=>`<button class="cat ${active===c?"active":""}" data-cat="${c}">${c}</button>`).join("");
- document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{
-  active=b.dataset.cat;renderCats();renderMenu();
- });
-}
 function renderMenu(){
- const q=$("search").value.trim().toLocaleLowerCase("fr");
- const items=menu.map((x,i)=>({x,i})).filter(o=>
-  (active==="Tout"||o.x[0]===active)&&o.x[1].toLocaleLowerCase("fr").includes(q)
- );
- if(!items.length){$("grid").innerHTML='<div class="empty">Aucun plat trouvé.</div>';return}
- $("grid").innerHTML=items.map(({x,i})=>{
-  const pizza=x[2]===null;
-  const price=pizza?`Mini ${x[3]} DH / Normal ${x[4]} DH`:`${x[2]} DH`;
-  return `<article class="item">
-   <div class="itemtop"><div class="itemname">${x[1]}</div><div class="price">${price}</div></div>
-   <div class="catlabel">${x[0]}</div>
-   ${pizza?`<select class="size" id="size${i}"><option value="Mini">Mini — ${x[3]} DH</option><option value="Normal">Normal — ${x[4]} DH</option></select>`:""}
-   <div class="itembottom"><span class="small">${pizza?"Choisir la taille":"Prix fixe"}</span><button class="add" data-add="${i}">+ Ajouter</button></div>
-  </article>`;
- }).join("");
- document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addItem(Number(b.dataset.add)));
+  const q=searchEl.value.trim().toLowerCase();
+  const filtered=menuData.filter(x=>
+    (selectedCategory==="Tout"||x[0]===selectedCategory)&&
+    x[1].toLowerCase().includes(q)
+  );
+  menuEl.innerHTML="";
+  document.getElementById("noResults").hidden=filtered.length>0;
+
+  filtered.forEach(item=>{
+    const [cat,name,price,emoji,mini,normal]=item;
+    const card=document.createElement("article");
+    card.className="card";
+    const icon=document.createElement("div");
+    icon.className="emoji";
+    icon.textContent=emoji;
+    const title=document.createElement("h3");
+    title.textContent=name;
+    card.append(icon,title);
+
+    let sizeSelect=null;
+    const priceEl=document.createElement("div");
+    priceEl.className="price";
+
+    if(cat==="Pizzas"){
+      sizeSelect=document.createElement("select");
+      sizeSelect.setAttribute("aria-label","Taille de la pizza");
+      [["Mini",mini],["Normal",normal]].forEach(([label,p])=>{
+        const o=document.createElement("option");
+        o.value=p;o.textContent=label+" — "+p+" DH";
+        sizeSelect.appendChild(o);
+      });
+      sizeSelect.onchange=()=>priceEl.textContent=money(Number(sizeSelect.value));
+      priceEl.textContent=money(mini);
+      card.append(sizeSelect);
+    }else{
+      priceEl.textContent=money(price);
+    }
+
+    const btn=document.createElement("button");
+    btn.type="button";
+    btn.className="add";
+    btn.textContent="+ Ajouter au panier";
+    btn.onclick=()=>{
+      const chosenPrice=sizeSelect?Number(sizeSelect.value):price;
+      const chosenName=sizeSelect?name+" ("+sizeSelect.options[sizeSelect.selectedIndex].text.split(" — ")[0]+")":name;
+      addToCart(chosenName,chosenPrice);
+    };
+    card.append(priceEl,btn);
+    menuEl.appendChild(card);
+  });
 }
-function addItem(i){
- const x=menu[i];let name=x[1],price=x[2];
- if(price===null){const s=$("size"+i).value;price=s==="Mini"?x[3]:x[4];name+=` (${s})`;}
- const old=cart.find(c=>c.name===name);
- if(old)old.qty++;else cart.push({name,price,qty:1});
- renderCart();toast("Ajouté au panier ✓");
+
+function addToCart(name,price){
+  const existing=cart.find(x=>x.name===name&&x.price===price);
+  if(existing)existing.qty++;
+  else cart.push({name,price,qty:1});
+  renderCart();
 }
+
+function changeQty(index,delta){
+  cart[index].qty+=delta;
+  if(cart[index].qty<=0)cart.splice(index,1);
+  renderCart();
+}
+
 function renderCart(){
- const count=cart.reduce((s,c)=>s+c.qty,0);
- const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
- $("count").textContent=`${count} article${count>1?"s":""}`;
- $("total").textContent=total+" DH";
- if(!cart.length){$("cartlist").innerHTML='<p class="hint">Ajoute tes plats préférés depuis le menu.</p>';return}
- $("cartlist").innerHTML=cart.map((c,i)=>`<div class="cartrow">
-  <div><strong>${c.name}</strong><small>${c.price} DH × ${c.qty} = ${c.price*c.qty} DH</small></div>
-  <div class="qty"><button data-minus="${i}" aria-label="Diminuer">−</button><strong>${c.qty}</strong><button data-plus="${i}" aria-label="Augmenter">+</button></div>
- </div>`).join("");
- document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{
-  const i=Number(b.dataset.minus);cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);renderCart();
- });
- document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{
-  cart[Number(b.dataset.plus)].qty++;renderCart();
- });
+  const el=document.getElementById("cart");
+  el.innerHTML="";
+  if(cart.length===0){
+    el.innerHTML='<p class="cart-empty">Votre panier est vide. Ajoutez vos plats préférés !</p>';
+  }else{
+    cart.forEach((item,i)=>{
+      const row=document.createElement("div");
+      row.className="cart-item";
+      const name=document.createElement("div");
+      name.className="cart-name";
+      name.textContent=item.name;
+      const price=document.createElement("div");
+      price.className="cart-price";
+      price.textContent=money(item.price*item.qty);
+      const qty=document.createElement("div");
+      qty.className="qty";
+      const minus=document.createElement("button");
+      minus.type="button";minus.textContent="−";minus.setAttribute("aria-label","Diminuer");
+      minus.onclick=()=>changeQty(i,-1);
+      const count=document.createElement("span");
+      count.textContent=item.qty;
+      const plus=document.createElement("button");
+      plus.type="button";plus.textContent="+";plus.setAttribute("aria-label","Augmenter");
+      plus.onclick=()=>changeQty(i,1);
+      qty.append(minus,count,plus);
+      row.append(name,qty,price);
+      el.appendChild(row);
+    });
+  }
+  document.getElementById("total").textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0));
 }
-$("search").addEventListener("input",renderMenu);
-$("clear").onclick=()=>{cart=[];renderCart();};
-$("send").onclick=()=>{
- if(!cart.length){toast("Ajoute d'abord un plat au panier.");return}
- const lines=cart.map(c=>`- ${c.name} x${c.qty} = ${c.price*c.qty} DH`).join("\n");
- const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
- const msg=`Bonjour Snack Roky ! Je souhaite commander :\n\n${lines}\n\nTotal estimé : ${total} DH\n\nMerci de confirmer ma commande.`;
- window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg),"_blank");
-};
-renderCats();renderMenu();renderCart();
+
+document.getElementById("customerForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  if(cart.length===0){
+    alert("Veuillez ajouter au moins un plat à votre panier.");
+    document.getElementById("menu").scrollIntoView({behavior:"smooth"});
+    return;
+  }
+
+  const name=document.getElementById("fullname").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const address=document.getElementById("address").value.trim();
+  const time=document.getElementById("time").value;
+  const notes=document.getElementById("notes").value.trim();
+
+  if(!name||!phone||!address||!time){
+    alert("Veuillez remplir tous les champs obligatoires.");
+    return;
+  }
+
+  let msg="🍔 *COMMANDE — SNACK ROKY*\\n\\n";
+  msg+="👤 Nom : "+name+"\\n";
+  msg+="📞 Téléphone : "+phone+"\\n";
+  msg+="📍 Adresse : "+address+"\\n";
+  msg+="🕒 Heure souhaitée : "+time+"\\n\\n";
+  msg+="🛒 *DÉTAIL DE LA COMMANDE*\\n";
+  cart.forEach(x=>{
+    msg+="• "+x.name+" × "+x.qty+" = "+(x.price*x.qty)+" DH\\n";
+  });
+  msg+="\\n💰 *TOTAL : "+cart.reduce((s,x)=>s+x.price*x.qty,0)+" DH*\\n";
+  if(notes)msg+="\\n📝 Remarque : "+notes+"\\n";
+  msg+="\\nMerci !";
+
+  const url="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+  window.open(url,"_blank");
+});
+
+searchEl.addEventListener("input",renderMenu);
+document.getElementById("year").textContent=new Date().getFullYear();
+renderCategories();
+renderMenu();
+renderCart();
 </script>
 </body>
 </html>
